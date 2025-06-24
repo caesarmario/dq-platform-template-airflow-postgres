@@ -17,10 +17,26 @@ PG_CONFIG = {
 }
 
 FRESHNESS_TABLES = [
-    {"table": "customer_transactions", "column": "transaction_date", "sla_minutes": 60},
-    {"table": "orders", "column": "order_purchase_timestamp", "sla_minutes": 60},
-    {"table": "order_reviews", "column": "review_creation_date", "sla_minutes": 1440},
+    {
+        "table": "customer_transactions",
+        "column": "transaction_date",
+        "sla_minutes": 60,
+        "expected_data_start": "2024-01-01"
+    },
+    {
+        "table": "orders",
+        "column": "order_purchase_timestamp",
+        "sla_minutes": 60,
+        "expected_data_start": "2022-01-01"
+    },
+    {
+        "table": "order_reviews",
+        "column": "review_creation_date",
+        "sla_minutes": 1440,
+        "expected_data_start": "2022-01-01"
+    }
 ]
+
 
 COMPLETENESS_TABLES = [
     {"table": "customer_transactions", "min_rows": 200000},
@@ -45,17 +61,23 @@ def check_freshness():
         status = "PASS"
         delay_minutes = None
 
-        if result:
-            if isinstance(result, datetime):
-                delay = now - result
-            else:
-                try:
-                    delay = now - datetime.strptime(result, "%Y-%m-%d %H:%M:%S.%f")
-                except ValueError:
-                    delay = now - datetime.strptime(result, "%Y-%m-%d %H:%M:%S")
-            delay_minutes = delay.total_seconds() / 60
-            if delay > sla:
-                status = "FAIL"
+        expected_start = datetime.strptime(t.get("expected_data_start"), "%Y-%m-%d")
+        if isinstance(result, datetime):
+            data_time = result
+        else:
+            try:
+                data_time = datetime.strptime(result, "%Y-%m-%d %H:%M:%S.%f")
+            except ValueError:
+                data_time = datetime.strptime(result, "%Y-%m-%d %H:%M:%S")
+
+        delay = now - data_time
+        delay_minutes = delay.total_seconds() / 60
+
+        # New logic: skip if outdated
+        if data_time < expected_start:
+            status = "SKIPPED"
+        else:
+            status = "FAIL" if delay > sla else "PASS"
 
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS tmt_dq.dq_freshness_log (
