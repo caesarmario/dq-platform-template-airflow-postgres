@@ -1,0 +1,99 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0" version="27.1.6">
+  <diagram name="Page-1" id="C3fCNbeZrlh8Kucppy7T">
+    <mxGraphModel dx="1012" dy="491" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-3" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="310" y="130" width="400" height="225" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-2" value="MySQL&lt;div&gt;(Data Source)&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-4" value="ingestion_dag" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/AirflowLogo.png/1200px-AirflowLogo.png;" vertex="1" parent="1">
+          <mxGeometry x="133" y="150" width="77.6" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-5" value="PostgreSQL / BigQuery&lt;div&gt;(ODS)&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="220" y="190" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-2" target="t8wKi6axy3iaV3nmjiLH-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="460" as="sourcePoint" />
+            <mxPoint x="260" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-8" value="dag_check_observability&#xa;- freshness&#xa;- completness" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/AirflowLogo.png/1200px-AirflowLogo.png;" vertex="1" parent="1">
+          <mxGeometry x="386" y="170" width="77.6" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-5" target="t8wKi6axy3iaV3nmjiLH-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="450" as="sourcePoint" />
+            <mxPoint x="290" y="400" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="235" />
+              <mxPoint x="330" y="185" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-10" value="dag_run_monitoring&#xa;- violations (w/ severity)" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/AirflowLogo.png/1200px-AirflowLogo.png;" vertex="1" parent="1">
+          <mxGeometry x="386" y="270" width="77.6" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-5" target="t8wKi6axy3iaV3nmjiLH-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="280" as="sourcePoint" />
+            <mxPoint x="416" y="230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="235" />
+              <mxPoint x="330" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-12" value="dag_alerting&#xa;&#xa;Sends alerts to Slack (or skips)" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/AirflowLogo.png/1200px-AirflowLogo.png;" vertex="1" parent="1">
+          <mxGeometry x="570" y="220" width="77.6" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=elbowEdgeStyle;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-10" target="t8wKi6axy3iaV3nmjiLH-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="280" as="sourcePoint" />
+            <mxPoint x="446" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=elbowEdgeStyle;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-8" target="t8wKi6axy3iaV3nmjiLH-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="330" as="sourcePoint" />
+            <mxPoint x="586" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-15" value="Metabase&#xa;&#xa;(Freshness, Rule Violations,&#xa;Alerts, Completeness)" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://iconape.com/wp-content/png_logo_vector/metabase-logo.png;" vertex="1" parent="1">
+          <mxGeometry x="760" y="170" width="79" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;edgeStyle=elbowEdgeStyle;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-12" target="t8wKi6axy3iaV3nmjiLH-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="760" y="430" as="sourcePoint" />
+            <mxPoint x="810" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-17" value="DQ Logs&lt;div&gt;(storage layer)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="658" y="187" width="92.4" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-18" value="dq_rule_config&lt;div&gt;(SQL)&lt;/div&gt;" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.document" vertex="1" parent="1">
+          <mxGeometry x="310" y="370" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-19" value="dq_schema_config&lt;div&gt;(JSON)&lt;/div&gt;" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.document" vertex="1" parent="1">
+          <mxGeometry x="425" y="370" width="105" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-20" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-18" target="t8wKi6axy3iaV3nmjiLH-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="580" as="sourcePoint" />
+            <mxPoint x="400" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8wKi6axy3iaV3nmjiLH-21" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="1" source="t8wKi6axy3iaV3nmjiLH-19" target="t8wKi6axy3iaV3nmjiLH-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="420" as="sourcePoint" />
+            <mxPoint x="495" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
